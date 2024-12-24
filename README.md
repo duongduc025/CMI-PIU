@@ -49,19 +49,19 @@ We developed our models with approximately 40 versions, marked by 3 outstanding 
 
 #### 1. Baseline
 - **Data**: Drop unlabeled records, remove columns with >50% missing values, fill missing values with -1, process Parquet data by averaging columns and merging into CSV by ID, and split data into 80% training, 20% testing.
-- **Metric**: Evaluate with confusion matrix, classification_report.
+- **Metric**: Evaluate with `confusion_matrix`,`classification_report` from `sklearn`
 - **Model**: Random Forest with grid search for hyperparameter tuning.
 - **Result**: Model shows strong bias toward class 0, struggles with class 1 and 2, and demonstrates prediction imbalance; accuracy and scores indicate room for improvement.
 
 #### 2. 1st Improvement
 - **Data**: Replace missing values using the KNN algorithm. Use an adversarial neural network with an encoder-decoder structure.
-- **Metric**: Evaluate with confusion matrix, classification_report.
+- **Metric**: Evaluate with `confusion_matrix`,`classification_report` from `sklearn`
 - **Model**: Implement LightGBM. Use L1/L2 regularization and early stopping to mitigate overfitting.
 - **Result**: Improved accuracy with better focus on minority classes (class 1). However, submission scores remain low, highlighting potential issues with feature usage or evaluation strategies.
 
 #### 3. 2nd Improvement (Final Version)
 - **Data**: Retain the previous data processing approach but engineer new features (e.g., pulse pressure, fat-to-muscle ratio) based on medical metrics to enhance feature informativeness.
-- **Metric**: Evaluate with confusion matrix, classification_report, and Quadratic Weighted Kappa (QWK) as the optimization metric.
+- **Metric**: Evaluate with `confusion_matrix`,`classification_report` from `sklearn`, and Quadratic Weighted Kappa (QWK) as the optimization metric.
 - **Model**: LGBMRegressor for ordinal classification, implement threshold rounding, apply K-Fold Cross-Validation for generalization, and optimize hyperparameters using Bayesian Optimization.
 - **Result**: Submission scores improve significantly, achieving the highest private test score and a bronze medal rank (364). Model shows improved awareness of ordinal class relationships, reducing extreme misclassifications.
 
