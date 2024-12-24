@@ -17,5 +17,4 @@ Our task is to train a model based on other features to predict **SII** effectiv
 
 ### Addition Folder
 
-![image](https://github.com/user-attachments/assets/a5d71c39-076f-4683-88e5-5dff46216f74)
 
