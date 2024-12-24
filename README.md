@@ -12,9 +12,10 @@ Our task is to train a model based on other features to predict **SII** effectiv
 
 
 ### Performance 
-
+![Screenshot from 2024-12-24 21-40-04](https://github.com/user-attachments/assets/3dbfc366-fc83-4189-9b65-da839e8d36ab)
 
 
 ### Addition Folder
+
 
 
