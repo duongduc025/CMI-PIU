@@ -1,109 +1,92 @@
-# Machine Learning Final Project - Problematic Internet Use 💻 
+# Machine Learning Final Project - Problematic Internet Use 💻
 
-## Our Group: Team Mong
+## Our group: Team Mong
+
 - **Lai Hoang Hiep** - 22028295  
 - **Hoang Duc Duong** - 22028259  
 - **Pham Mai Anh** - 22028225  
 
 ---
 
-## Introduction  
-This repository showcases the collaborative efforts of Team Mong in the Kaggle competition, focusing on predicting problematic internet usage among young individuals.  
+## 📃 Introduction
 
+This repository showcases the collaborative efforts of our team in the Kaggle competition, focusing on predicting problematic internet usage among young individuals.  
 **Kaggle Competition**: [Child Mind Institute — Problematic Internet Use](https://www.kaggle.com/competitions/child-mind-institute-problematic-internet-use)
 
 ---
 
-## Problem  
-The primary goal of this competition is to predict the **Severity Impairment Index (SII)** using the provided training data.  
-The target variable is derived from the field `PCIAT-PCIAT_Total`. Our task involves training a model on the given features to accurately predict the **SII**.
+## 🔍 Problem
+
+The main aim of this competition is to use the given training data to predict the **Severity Impairment Index (SII)**.  
+The target variable is originally derived from the field **PCIAT-PCIAT_Total**. Our task is to train a model based on other features to predict **SII** effectively.
 
 ---
 
-## Solution  
+## 🚀 Solution
 
-### Machine Learning Techniques  
-Machine Learning techniques mentioned in the presentation, summarized below:
+### Machine Learning Techniques
 
-- **Data Processing**:  
-  - Remove NaN columns.  
-  - Fill missing values with constants using `SimpleImputer` and KNN Imputation with `KNNImputer`.  
-  - Remove outliers and engineer features (e.g., pulse pressure, fat-to-muscle ratio).  
+#### Data Processing
+- Remove NaN columns.
+- Fill missing values with a constant (using `SimpleImputer` from sklearn).
+- KNN Imputation (`KNNImputer` from sklearn).
+- Remove outliers.
+- Feature engineering (e.g., pulse pressure, fat-to-muscle ratio).
+- Correlation-based feature removal.
+- Neural network encoder-decoder for time-series data.
 
-- **Modeling**:  
-  - Tree-based algorithms: Random Forest, LightGBM, LGBM Regressor, XGBoost, and CatBoost.  
+#### Modeling
+- Tree-based algorithms: Random Forest, LightGBM, LightGBM Regressor, XGBoost, CatBoost.
+- Optimization: Grid Search, Bayesian Optimization, K-Fold Cross-Validation, threshold rounder optimization.
 
-- **Optimization**:  
-  - Grid Search, Bayesian Optimization, K-Fold Cross-Validation, and threshold rounding.  
+#### Evaluation
+- `confusion_matrix`,`classification_report` from `sklearn`
+- Quadratic Weighted Kappa (QWK).
 
-- **Feature Extraction**:  
-  - Correlation-based feature removal.  
-  - Neural network encoder-decoder for time-series data.  
+### Three Highlighted Versions
 
-- **Evaluation**:  
-  - Confusion matrix, `classification_report`, and Quadratic Weighted Kappa (QWK).
+We developed our models with approximately 40 versions, marked by 3 outstanding milestone versions.  
 
----
+#### 1. Baseline
+- **Data**: Drop unlabeled records, remove columns with >50% missing values, fill missing values with -1, process Parquet data by averaging columns and merging into CSV by ID, and split data into 80% training, 20% testing.
+- **Metric**: Evaluate with confusion matrix, classification_report.
+- **Model**: Random Forest with grid search for hyperparameter tuning.
+- **Result**: Model shows strong bias toward class 0, struggles with class 1 and 2, and demonstrates prediction imbalance; accuracy and scores indicate room for improvement.
 
-### Highlighted Versions  
+#### 2. 1st Improvement
+- **Data**: Replace missing values using the KNN algorithm. Use an adversarial neural network with an encoder-decoder structure.
+- **Metric**: Evaluate with confusion matrix, classification_report.
+- **Model**: Implement LightGBM. Use L1/L2 regularization and early stopping to mitigate overfitting.
+- **Result**: Improved accuracy with better focus on minority classes (class 1). However, submission scores remain low, highlighting potential issues with feature usage or evaluation strategies.
 
-Our work included approximately 40 versions, with three key milestones:
-
-1. **Baseline**  
-   - **Data**:  
-     - Drop unlabeled records.  
-     - Remove columns with >50% missing values.  
-     - Fill missing values with -1.  
-     - Process Parquet data by averaging columns and merging into a CSV by ID.  
-     - Split data: 80% training, 20% testing.  
-   - **Metric**: Evaluate with confusion matrix and `classification_report`.  
-   - **Model**: Random Forest with Grid Search for hyperparameter tuning.  
-   - **Result**:  
-     - Strong bias toward class 0.  
-     - Poor handling of classes 1 and 2.  
-     - Imbalanced predictions and suboptimal scores.
-
-2. **1st Improvement**  
-   - **Data**: Replace missing values using the KNN algorithm.  
-   - **Metric**: Evaluate with confusion matrix and `classification_report`.  
-   - **Model**: LightGBM with L1/L2 regularization and early stopping.  
-   - **Result**:  
-     - Improved accuracy for minority classes.  
-     - Submission scores highlighted potential issues with feature selection or evaluation.
-
-3. **2nd Improvement (Final Version)**  
-   - **Data**: Retain previous processing but engineer new features (e.g., pulse pressure, fat-to-muscle ratio).  
-   - **Metric**: Evaluate with confusion matrix, `classification_report`, and QWK.  
-   - **Model**:  
-     - LGBM Regressor for ordinal classification.  
-     - Threshold rounding.  
-     - K-Fold Cross-Validation.  
-     - Bayesian Optimization for hyperparameters.  
-   - **Result**:  
-     - Significant improvement in submission scores.  
-     - Achieved a private test score of **0.439** and a bronze medal rank (364).  
+#### 3. 2nd Improvement (Final Version)
+- **Data**: Retain the previous data processing approach but engineer new features (e.g., pulse pressure, fat-to-muscle ratio) based on medical metrics to enhance feature informativeness.
+- **Metric**: Evaluate with confusion matrix, classification_report, and Quadratic Weighted Kappa (QWK) as the optimization metric.
+- **Model**: LGBMRegressor for ordinal classification, implement threshold rounding, apply K-Fold Cross-Validation for generalization, and optimize hyperparameters using Bayesian Optimization.
+- **Result**: Submission scores improve significantly, achieving the highest private test score and a bronze medal rank (364). Model shows improved awareness of ordinal class relationships, reducing extreme misclassifications.
 
 ---
 
-### Performance of Final Version  
+## 🎯 Performance of Final Version
 
-| **Metric**         | **Train**    | **Test**     |  
-|---------------------|--------------|--------------|  
-| Weighted Kappa      | 0.8167       | 0.5407       |  
+- **Weighted Kappa score on test**: `0.5407461505690463`  
+- **Weighted Kappa score on train**: `0.8167463778309185`  
 
-![Final Version Screenshot](https://github.com/user-attachments/assets/3dbfc366-fc83-4189-9b65-da839e8d36ab)
-
----
-
-### Repository Structure  
-
-- `FINAL: 2nd-Improvement.ipynb`: The final version submitted to the competition.  
-- `Baseline.ipynb`: Baseline version.  
-- `1st-Improvement.ipynb`: 1st improvement version.  
-- `Other`: Additional high-scoring versions not submitted.  
+![Performance Chart](https://github.com/user-attachments/assets/3dbfc366-fc83-4189-9b65-da839e8d36ab)
 
 ---
 
-## Conclusion  
+## 🗂 Repository Structure
 
-Through dedicated teamwork and independent implementation, Team Mong developed and tested 46 versions to achieve a rank of **364** with an official private score of **0.439**, equivalent to a bronze medal. We are proud of our originality and understanding, ensuring that all solutions were implemented with integrity while drawing inspiration from existing ideas.
+1. **FINAL**: `2nd-improvement.ipynb`: The final version submitted to the Kaggle competition.
+2. **Other Versions**:
+   - `Baseline.ipynb`: Baseline version.
+   - `1st-Improvement.ipynb`: 1st improvement version.
+   - **Other**: Notable versions implemented with high scores but not submitted.
+
+---
+
+## 🏆 Conclusion
+
+Our hard work and dedication are reflected in the results. After implementing 46 versions, we achieved a rank of 364 with an official private score of **0.439**, achieving the same score as a bronze medal.  
+We are especially proud that all of our work was implemented independently. While we explored ideas from others for inspiration, we ensured a thorough understanding and executed everything ourselves, staying true to our commitment to originality and integrity.
