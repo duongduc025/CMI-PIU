@@ -69,8 +69,10 @@ We developed our models with approximately 40 versions, marked by 3 outstanding 
 
 ## 🎯 Performance of Final Version
 
-- **Weighted Kappa score on test**: `0.5407461505690463`  
-- **Weighted Kappa score on train**: `0.8167463778309185`  
+| Metric                    | Value                  |
+|---------------------------|------------------------|
+| **Weighted Kappa (test)** | `0.5407461505690463`   |
+| **Weighted Kappa (train)**| `0.8167463778309185`   |
 
 ![Performance Chart](https://github.com/user-attachments/assets/3dbfc366-fc83-4189-9b65-da839e8d36ab)
 
