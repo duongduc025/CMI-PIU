@@ -90,5 +90,5 @@ We developed our models with approximately 40 versions, marked by 3 outstanding 
 
 ## 🏆 Conclusion
 
-Our hard work and dedication are reflected in the results. After implementing 46 versions, we achieved a rank of 364 with an official private score of **0.439**, achieving the same score as a bronze medal.  
+Our hard work and dedication are reflected in the results. After implementing 46 versions, we achieved a rank of 364 with an official private score of **0.439**, achieving the bronze medal.  
 We are especially proud that all of our work was implemented independently. While we explored ideas from others for inspiration, we ensured a thorough understanding and executed everything ourselves, staying true to our commitment to originality and integrity.
